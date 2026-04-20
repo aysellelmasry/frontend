@@ -47,22 +47,49 @@ a{color:inherit;text-decoration:none}
 .api-banner.err{background:rgba(220,50,50,0.18);border-bottom:1px solid rgba(220,50,50,0.35);color:#fca5a5}
 .api-banner.ok{background:rgba(34,197,94,0.1);border-bottom:1px solid rgba(34,197,94,0.2);color:#86efac}
 
-/* HEADER */
-.header{position:sticky;top:0;z-index:200;background:rgba(4,12,26,0.93);border-bottom:1px solid rgba(212,167,44,0.18);backdrop-filter:blur(24px)}
-.header-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 28px;height:110px}
-.h-left{display:flex;align-items:center;gap:12px;justify-content:flex-start}
-.h-right{display:flex;align-items:center;gap:12px;justify-content:flex-end}
+/* ═══════════════════════════════════════════════
+   HEADER — desktop
+   ═══════════════════════════════════════════════ */
+.header{
+  position:sticky;top:0;z-index:200;
+  background:rgba(4,12,26,0.93);
+  border-bottom:1px solid rgba(212,167,44,0.18);
+  backdrop-filter:blur(24px);
+}
+.header-inner{
+  max-width:1280px;margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  padding:0 28px;
+  height:120px;   /* slightly taller so bigger logos fit */
+}
+.h-left{display:flex;align-items:center;gap:14px;justify-content:flex-start}
+.h-right{display:flex;align-items:center;gap:14px;justify-content:flex-end}
 .h-center{display:flex;flex-direction:column;align-items:center;gap:0;padding:0 24px}
-.h-logo{height:70px;width:70px;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 0 10px rgba(212,167,44,0.45));transition:filter var(--tr)}
+
+/* ── logos: bigger on desktop ── */
+.h-logo{
+  height:92px;width:92px;
+  object-fit:contain;flex-shrink:0;
+  filter:drop-shadow(0 0 10px rgba(212,167,44,0.45));
+  transition:filter var(--tr);
+}
 .h-logo:hover{filter:drop-shadow(0 0 20px rgba(212,167,44,0.8))}
-.h-logo-fb{width:70px;height:70px;border-radius:50%;flex-shrink:0;background:var(--gold-dim);border:1px solid rgba(212,167,44,0.3);display:grid;place-items:center;font-size:24px}
-.h-name{display:flex;flex-direction:column;gap:4px}
-.h-en{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--sky);font-weight:600;white-space:nowrap}
-.h-ar{font-family:'Noto Naskh Arabic',serif;font-size:11px;color:var(--gold-l);font-weight:500;direction:rtl;white-space:nowrap}
+.h-logo-fb{
+  width:92px;height:92px;border-radius:50%;flex-shrink:0;
+  background:var(--gold-dim);border:1px solid rgba(212,167,44,0.3);
+  display:grid;place-items:center;font-size:28px;
+}
+
+.h-name{display:flex;flex-direction:column;gap:5px}
+.h-en{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--sky);font-weight:600;white-space:nowrap}
+.h-ar{font-family:'Noto Naskh Arabic',serif;font-size:12px;color:var(--gold-l);font-weight:500;direction:rtl;white-space:nowrap}
 .h-right .h-name{align-items:flex-end}
-.hc-title{font-family:'Playfair Display',serif;font-size:20px;letter-spacing:.05em;color:var(--gold-l);font-weight:700;white-space:nowrap}
-.hc-line{width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:4px 0}
-.hc-ar{font-family:'Noto Naskh Arabic',serif;font-size:12px;color:var(--cream-dim);direction:rtl}
+
+.hc-title{font-family:'Playfair Display',serif;font-size:22px;letter-spacing:.05em;color:var(--gold-l);font-weight:700;white-space:nowrap}
+.hc-line{width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:5px 0}
+.hc-ar{font-family:'Noto Naskh Arabic',serif;font-size:13px;color:var(--cream-dim);direction:rtl}
 
 /* HERO */
 .hero{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px 60px;position:relative}
@@ -223,29 +250,70 @@ select option{background:#081428}
 .footer-text{font-size:12px;color:rgba(247,240,223,0.28);line-height:2;font-weight:300}
 .footer-gold{color:var(--gold)}
 
+/* ═══════════════════════════════════════════════
+   MOBILE  ≤ 768 px
+   ═══════════════════════════════════════════════ */
 @media(max-width:768px){
-  .header-inner{padding:0 14px;height:110px}
-  .h-center{display:none}
-  .h-logo,.h-logo-fb{width:70px;height:70px;font-size:20px}
+
+  /* ── Header: stack vertically, everything centered ── */
+  .header-inner{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    height:auto;
+    padding:14px 16px 16px;
+    gap:10px;
+  }
+
+  /* Center title block first (visual priority) */
+  .h-center{
+    display:flex;
+    order:-1;                     /* pull to top */
+    width:100%;
+    padding-bottom:10px;
+    border-bottom:1px solid rgba(212,167,44,0.15);
+  }
+  .hc-title{font-size:18px;}
+
+  /* Side blocks: each becomes a centered row */
+  .h-left,
+  .h-right{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    width:100%;
+  }
+  .h-right{flex-direction:row-reverse;}  /* logo → text, mirrored */
+
+  /* Text alignment in side blocks */
+  .h-name{align-items:center !important;}
+  .h-right .h-name{align-items:center !important;}
+
+  /* Smaller logos on phone */
+  .h-logo,
+  .h-logo-fb{width:52px;height:52px;font-size:20px;}
+
+  /* Tighter text */
+  .h-en{font-size:9px;letter-spacing:.14em;}
+  .h-ar{font-size:10px;}
+
+  /* Rest of page */
   .hero{min-height:85vh;padding:60px 16px 48px}
   .card-body,.photo-grid,.filter-bar,.res-head,.card-head{padding:18px}
   .res-title{font-size:24px}
+  .wrap,.wrap-wide{padding:0 12px 60px}
 }
 </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════════════════════════════════
-     API CONFIG
-     After deploying your backend on Render, paste the URL below.
-     Example: 'https://graduation-face-api.onrender.com'
-     ══════════════════════════════════════════════════════════════════════ -->
 <script>
   const _apiFromQuery = new URLSearchParams(window.location.search).get('api');
-
-  // ← PASTE YOUR RENDER BACKEND URL HERE (no trailing slash)
   const _apiHardcoded = 'https://backk-production-c0d5.up.railway.app';
-
   window.API_BASE = _apiFromQuery || _apiHardcoded;
   console.log('[Config] API_BASE =', window.API_BASE);
 </script>
@@ -258,14 +326,12 @@ select option{background:#081428}
 
 <div class="page">
 
-<!-- API Status Banner -->
 <div class="api-banner" id="apiBanner"></div>
 
 <!-- HEADER -->
 <header class="header">
   <div class="header-inner">
     <div class="h-left">
-      <!-- college.png served from same folder as index.html -->
       <img src="college.png" alt="كلية الزراعة" class="h-logo"
            onerror="this.outerHTML='<div class=h-logo-fb>🌾</div>'">
       <div class="h-name">
@@ -283,7 +349,6 @@ select option{background:#081428}
         <span class="h-en">Students Union</span>
         <span class="h-ar">اتحاد الطلاب</span>
       </div>
-      <!-- union.png served from same folder as index.html -->
       <img src="union.png" alt="اتحاد الطلاب" class="h-logo"
            onerror="this.outerHTML='<div class=h-logo-fb>🎓</div>'">
     </div>
@@ -536,13 +601,11 @@ async function doSearch() {
 
   try {
     const ctrl = new AbortController();
-    // 120 s timeout — face_recognition + large DB can be slow on cold start
     const tid = setTimeout(() => ctrl.abort(), 120000);
     const res = await fetch(`${window.API_BASE}/search-face`, {
       method: 'POST',
       body: form,
       signal: ctrl.signal,
-      // Do NOT set Content-Type header manually — browser sets it with boundary for multipart
     });
     clearTimeout(tid);
 
@@ -629,7 +692,6 @@ function dlItems(items) {
   if (!items.length) { toast('No photos to download.', 'error'); return; }
   toast(`Opening ${items.length} download${items.length > 1 ? 's' : ''}… (allow pop-ups if prompted)`, 'info');
   items.forEach((item, i) => setTimeout(() => {
-    // Open in new tab — direct GDrive downloads are more reliable than hidden <a> clicks
     window.open(item.url, '_blank', 'noopener');
   }, i * 400));
 }
